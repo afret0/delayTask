@@ -3,7 +3,7 @@ package delayTask
 import (
 	"context"
 	"fmt"
-	"keke/pkg/sample/infrastructure/sampleCache"
+	"github.com/redis/go-redis/v9"
 	"testing"
 	"time"
 )
@@ -16,7 +16,13 @@ func EF(args []string) error {
 func TestService(t *testing.T) {
 	ctx := context.Background()
 
-	InitService("test", sampleCache.GetRedis())
+	RC := redis.NewUniversalClient(&redis.UniversalOptions{
+		Addrs:    []string{"120.27.235.209:6379"},
+		Password: "Qiyiguo2303",
+		Username: "default",
+	})
+
+	InitService("test", RC)
 
 	svr1 := GetService()
 	for i := 11; i <= 21; i++ {

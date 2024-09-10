@@ -8,7 +8,6 @@ import (
 	"github.com/bsm/redislock"
 	"github.com/google/uuid"
 	"github.com/redis/go-redis/v9"
-	"keke/infrastructure/tool"
 	"strings"
 	"time"
 )
@@ -69,9 +68,6 @@ func (s *Service) runEvent(ctx context.Context, eventS string) {
 	}
 
 	LT := 24 * time.Hour
-	if !tool.IsProEnv() {
-		LT = 3 * time.Second
-	}
 	_, err = s.lock.Obtain(ctx, fmt.Sprintf("%s:delayTask:lock:%s", s.caller, eventS), LT, nil)
 	if err != nil {
 		if errors.Is(err, redislock.ErrNotObtained) {
