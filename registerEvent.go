@@ -47,7 +47,7 @@ func (s *Service) RegisterEvent(name string, args []string, delay int64) error {
 	return nil
 }
 
-func (s *Service) RegisterEventFunc(name string, f func(p []string) error) {
+func (s *Service) RegisterEventFunc(name string, f func(p string) error) {
 	s.mx.RLock()
 	_, ok := s.slot[name]
 	s.mx.RUnlock()

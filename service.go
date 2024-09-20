@@ -10,7 +10,7 @@ import (
 type Service struct {
 	redis  redis.UniversalClient
 	caller string
-	slot   map[string]func(p []string) error
+	slot   map[string]func(p string) error
 	mx     sync.RWMutex
 	key    string
 	init   bool
@@ -31,7 +31,7 @@ func NewService(caller string, redis redis.UniversalClient) *Service {
 	svr := &Service{
 		redis:  redis,
 		caller: caller,
-		slot:   make(map[string]func(p []string) error),
+		slot:   make(map[string]func(p string) error),
 		mx:     sync.RWMutex{},
 		key:    fmt.Sprintf("%s:delayTask", caller),
 		init:   true,
