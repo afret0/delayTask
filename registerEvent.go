@@ -10,7 +10,10 @@ import (
 	"time"
 )
 
-func (s *Service) RegisterEvent(ctx context.Context, name string, args []string, delay int64) error {
+func (s *Service) RegisterEvent(name string, args []string, delay int64) error {
+	ctx := context.Background()
+	ctx = context.WithValue(ctx, "opId", strings.ReplaceAll(uuid.New().String(), "-", ""))
+
 	lg := CtxLogger(ctx).WithField("name", name)
 
 	s.mx.RLock()
@@ -44,7 +47,7 @@ func (s *Service) RegisterEvent(ctx context.Context, name string, args []string,
 	return nil
 }
 
-func (s *Service) RegisterEventFunc(ctx context.Context, name string, f func(p []string) error) error {
+func (s *Service) RegisterEventFunc(name string, f func(p []string) error) error {
 	s.mx.RLock()
 	_, ok := s.slot[name]
 	s.mx.RUnlock()
