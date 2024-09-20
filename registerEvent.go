@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func (s *Service) RegisterEvent(name string, args []string, delay int64) error {
+func (s *Service) RegisterEvent(name string, args string, delay int64) error {
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, "opId", strings.ReplaceAll(uuid.New().String(), "-", ""))
 

@@ -18,9 +18,9 @@ type Service struct {
 }
 
 type event struct {
-	Id   string   `json:"id"`
-	Name string   `json:"name"`
-	Args []string `json:"args"`
+	Id   string `json:"id"`
+	Name string `json:"name"`
+	Args string `json:"args"`
 }
 
 func NewService(caller string, redis redis.UniversalClient) *Service {
