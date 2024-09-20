@@ -7,8 +7,6 @@ import (
 	"sync"
 )
 
-var svr *Service
-
 type Service struct {
 	redis  redis.UniversalClient
 	caller string
@@ -19,34 +17,18 @@ type Service struct {
 	lock   *redislock.Client
 }
 
-type Event struct {
+type event struct {
 	Id   string   `json:"id"`
 	Name string   `json:"name"`
 	Args []string `json:"args"`
 }
 
-func GetService() *Service {
-	if svr == nil {
-		panic("service is not initialized")
-	}
-
-	if !svr.init {
-		panic("service is not initialized")
-	}
-
-	return svr
-}
-
-func InitService(caller string, redis redis.UniversalClient) *Service {
+func NewService(caller string, redis redis.UniversalClient) *Service {
 	if caller == "" {
 		panic("caller is required")
 	}
 
-	if svr != nil {
-		return svr
-	}
-
-	svr = &Service{
+	svr := &Service{
 		redis:  redis,
 		caller: caller,
 		slot:   make(map[string]func(p []string) error),

@@ -22,7 +22,7 @@ func (s *Service) RegisterEvent(ctx context.Context, name string, args []string,
 		return err
 	}
 
-	E := &Event{
+	E := &event{
 		Name: name,
 		Args: args,
 		Id:   strings.ReplaceAll(uuid.New().String(), "-", ""),
