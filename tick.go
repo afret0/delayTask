@@ -50,7 +50,7 @@ func (s *Service) runEvent(ctx context.Context, eventS string) {
 	lg.Infof("event run...")
 	defer lg.Infof("event end...")
 
-	E := new(Event)
+	E := new(event)
 	err := json.Unmarshal([]byte(eventS), E)
 	if err != nil {
 		lg.WithError(err).Errorf("unmarshal event failed, event: %s", eventS)
