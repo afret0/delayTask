@@ -1,20 +1,22 @@
 package delayTask
 
 import (
-	"context"
 	"fmt"
 	"github.com/redis/go-redis/v9"
 	"testing"
 	"time"
 )
 
-func EF(args []string) error {
+func EF(args string) error {
 	fmt.Printf("args: %v\n", args)
-	return nil
+	//panic("lsakdjlfkajlsd")
+	time.Sleep(10 * time.Minute)
+	//return nil
+	return RetryErr
 }
 
 func TestService(t *testing.T) {
-	ctx := context.Background()
+	//ctx := context.Background()
 
 	RC := redis.NewUniversalClient(&redis.UniversalOptions{
 		Addrs:    []string{"120.27.235.209:6379"},
@@ -22,17 +24,14 @@ func TestService(t *testing.T) {
 		Username: "default",
 	})
 
-	InitService("test", RC)
+	//InitService("test", RC)
 
-	svr1 := GetService()
+	svr1 := NewService("test", RC)
 	for i := 11; i <= 21; i++ {
 		event := fmt.Sprintf("test:event:%d", i)
-		err := svr1.RegisterEventFunc(ctx, event, EF)
-		if err != nil {
-			t.Error(err)
-		}
+		svr1.RegisterEventFunc(event, EF)
 
-		err = svr1.RegisterEvent(ctx, event, []string{"arg1", "arg2", "arg3"}, int64(i))
+		err := svr1.RegisterEvent(event, "arg1", int64(i))
 		if err != nil {
 			t.Error(err)
 		}
