@@ -163,7 +163,7 @@ func (s *Service) runEvent(ctx context.Context, eventS string) error {
 		return err
 	}
 
-	LT := 24 * time.Hour
+	LT := 10 * time.Minute
 	_, err = s.lock.Obtain(ctx, fmt.Sprintf("%s:delayTask:lock:%s", s.caller, eventS), LT, nil)
 	if err != nil {
 		if errors.Is(err, redislock.ErrNotObtained) {
