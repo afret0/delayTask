@@ -1,3 +1,5 @@
+// Deprecated: delayTask is no longer maintained and will not receive further updates.
+// Please fork the repository if you need to continue using it.
 package delayTask
 
 import (
@@ -6,10 +8,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/afret0/delayTask/exporter"
 	"github.com/afret0/wheel/tool"
 	"github.com/bsm/redislock"
 	"github.com/redis/go-redis/v9"
+
+	"github.com/afret0/delayTask/exporter"
 )
 
 var RetryErr = fmt.Errorf("retry")
