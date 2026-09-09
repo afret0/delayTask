@@ -12,6 +12,9 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
+// Exporter exposes delayTask metrics to Prometheus.
+//
+// Deprecated: delayTask is no longer maintained.
 type Exporter struct {
 	service     string
 	constLabels map[string]string

@@ -17,11 +17,17 @@ import (
 	"github.com/afret0/delayTask/exporter"
 )
 
+// RetryErr indicates that an event should be retried.
+//
+// Deprecated: delayTask is no longer maintained.
 var RetryErr = fmt.Errorf("retry")
 var lg = GetLogger()
 
 //const ExporterBufferQueueLength = "buffer_queue_length"
 
+// Service manages delayed events backed by Redis.
+//
+// Deprecated: delayTask is no longer maintained.
 type Service struct {
 	redis  redis.UniversalClient
 	caller string
