@@ -1,3 +1,7 @@
+// Package exporter exposes delayTask metrics to Prometheus.
+//
+// Deprecated: delayTask is no longer maintained and will not receive further
+// updates. Please fork the repository if you need to continue using it.
 package exporter
 
 import (

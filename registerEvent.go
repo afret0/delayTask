@@ -50,7 +50,9 @@ func (s *Service) Publish(name string, args string, delay int64) error {
 	return nil
 }
 
-// RegisterEvent Deprecated : use Publish instead
+// RegisterEvent registers a delayed event.
+//
+// Deprecated: use [Service.Publish] instead.
 func (s *Service) RegisterEvent(name string, args string, delay int64) error {
 	return s.Publish(name, args, delay)
 }

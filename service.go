@@ -1,5 +1,7 @@
-// Deprecated: delayTask is no longer maintained and will not receive further updates.
-// Please fork the repository if you need to continue using it.
+// Package delayTask provides a Redis-backed delayed task queue.
+//
+// Deprecated: delayTask is no longer maintained and will not receive further
+// updates. Please fork the repository if you need to continue using it.
 package delayTask
 
 import (

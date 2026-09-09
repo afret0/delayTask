@@ -1,3 +1,5 @@
+// Deprecated: delayTask is no longer maintained and will not receive further
+// updates. Please fork the repository if you need to continue using it.
 module github.com/afret0/delayTask
 
 go 1.24.0
