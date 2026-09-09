@@ -11,6 +11,7 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) Publish(name string, args string, delay int64) error {
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, "opId", strings.ReplaceAll(uuid.New().String(), "-", ""))
@@ -57,6 +58,7 @@ func (s *Service) RegisterEvent(name string, args string, delay int64) error {
 	return s.Publish(name, args, delay)
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) RegisterEventFunc(name string, f func(p string) error) {
 	s.mx.RLock()
 	_, ok := s.slot[name]

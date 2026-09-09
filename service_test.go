@@ -10,6 +10,7 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+// Deprecated: delayTask is no longer maintained.
 func prometheusHandler() gin.HandlerFunc {
 	h := promhttp.Handler()
 	return func(c *gin.Context) {
@@ -17,10 +18,12 @@ func prometheusHandler() gin.HandlerFunc {
 	}
 }
 
+// Deprecated: delayTask is no longer maintained.
 func RegisterPrometheusRouter(E *gin.Engine) {
 	E.GET("/metrics", prometheusHandler())
 }
 
+// Deprecated: delayTask is no longer maintained.
 func EF(args string) error {
 	lg.Infof("args: %v", args)
 	//panic("lsakdjlfkajlsd")
@@ -29,6 +32,7 @@ func EF(args string) error {
 	return nil
 }
 
+// Deprecated: delayTask is no longer maintained.
 func TestService(t *testing.T) {
 	//ctx := context.Background()
 

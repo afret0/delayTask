@@ -53,6 +53,7 @@ type event struct {
 	UnAckRetryCount int64  `json:"unAckRetryCount"`
 }
 
+// Deprecated: delayTask is no longer maintained.
 func NewService(caller string, redis redis.UniversalClient) *Service {
 	if caller == "" {
 		panic("caller is required")
@@ -131,10 +132,12 @@ func NewService(caller string, redis redis.UniversalClient) *Service {
 	return svr
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) Debug() bool {
 	return tool.EnvEnabled("DELAYTASK_DEBUG")
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) loopFlushExp() {
 
 	lg.Infof("flush exp start...")

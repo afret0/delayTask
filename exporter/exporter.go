@@ -22,6 +22,7 @@ type Exporter struct {
 	gaugeSlot   map[string]prometheus.Gauge
 }
 
+// Deprecated: delayTask is no longer maintained.
 func New(svc string) *Exporter {
 
 	//ex.service = svc
@@ -45,6 +46,7 @@ func New(svc string) *Exporter {
 	return ex
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (e *Exporter) Counter(name string, helpChain ...string) prometheus.Counter {
 	help := ""
 	if len(helpChain) != 0 {
@@ -68,6 +70,7 @@ func (e *Exporter) Counter(name string, helpChain ...string) prometheus.Counter 
 	return C
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (e *Exporter) Gauge(name string, helpChain ...string) prometheus.Gauge {
 	help := ""
 	if len(helpChain) != 0 {

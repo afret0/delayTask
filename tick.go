@@ -16,6 +16,7 @@ import (
 	"golang.org/x/time/rate"
 )
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) startTick() {
 	lg.Infof("start tick")
 	s.exp.Gauge("tick_ping").Set(1)
@@ -47,6 +48,7 @@ func (s *Service) startTick() {
 
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) tickQ() {
 
 	now := timeTool.Now().Unix()
@@ -90,6 +92,7 @@ func (s *Service) tickQ() {
 	}
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) tickUnAckQ() {
 
 	eventL, err := s.redis.ZRangeByScore(context.Background(), s.unAckKey, &redis.ZRangeBy{Min: "-inf", Max: fmt.Sprintf("%d", time.Now().Add(-3*time.Minute).Unix()), Count: s.tickQCount}).Result()
@@ -137,6 +140,7 @@ func (s *Service) tickUnAckQ() {
 	}
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) startConsume() {
 	s.exp.Gauge("consume_ping").Set(1)
 	defer func() {
@@ -175,6 +179,7 @@ func (s *Service) startConsume() {
 
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) handleEvent(ctx context.Context, eventS string) {
 
 	err := s.runEvent(ctx, eventS)
@@ -213,6 +218,7 @@ func (s *Service) handleEvent(ctx context.Context, eventS string) {
 	}
 }
 
+// Deprecated: delayTask is no longer maintained.
 func (s *Service) runEvent(ctx context.Context, eventS string) error {
 	defer func() {
 		if err := recover(); err != nil {

@@ -7,6 +7,7 @@ import (
 
 var logger *logrus.Logger
 
+// Deprecated: delayTask is no longer maintained.
 func GetLogger() *logrus.Logger {
 	if logger != nil {
 		return logger
@@ -20,6 +21,7 @@ func GetLogger() *logrus.Logger {
 	return logger
 }
 
+// Deprecated: delayTask is no longer maintained.
 func CtxLogger(ctx context.Context) *logrus.Entry {
 	opIdValue := ctx.Value("opId")
 	opId, _ := opIdValue.(string)
